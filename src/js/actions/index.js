@@ -8,5 +8,6 @@ export function cancelReservation(payload) {
     return { type: cancel_reservation, payload}
 }
 export function deleteReservation(payload) {
+    console.log(payload)
     return { type: delete_reservation, payload}
 }

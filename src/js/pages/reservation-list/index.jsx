@@ -2,79 +2,7 @@
 import { connect } from "react-redux";
 import Reservation from "../../components/reservation";
 import { getReservations} from "../../actions/index";
-import "../../../statics/css/reservation-list-page.css";
-
-class ReservationList extends Component {
-	componentDidMount() {
-		this.props.getReservations();
-	}
-
-  render() {
-    return (
-			<div className="container-fluid">
-				<div className="row">
-				<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-					<h2>Reservation list</h2>
-				</div>				
-				</div>
-				<div className="row">
-					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 canceled-reservations" >
-						<h4>{this.props.reservationsCanceledQuantity} Canceled reservations</h4>
-							{this.props.reservations.map((el, i) =>{
-								return (
-									<div key={el.id}>
-										{el.status === "Cancelado" ? <Reservation info={el} index={i}/>:''}
-									</div>
-								)
-							} 
-							)}												
-					</div>
-					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 no-attend-reservations" >
-						<h4>{this.props.reservationsNoAttendQuantity} No attend reservations</h4>							
-							{this.props.reservations.map((el, i) => 
-								(
-									<div key={el.id}>
-										{el.status === "No Asiste" ? <Reservation info={el} index={i}/>:''}
-									</div>
-								)
-							)}												
-					</div>
-					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 reserved-reservations" >
-						<h4>{this.props.reservationsReservedQuantity} Reserved reservations</h4>							
-							{this.props.reservations.map((el, i) => 
-								(
-									<div key={el.id}>
-										{el.status === "Reservado" ? <Reservation info={el} index={i}/>:''}
-									</div>
-								)
-							)}												
-					</div>
-					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 attend-reservations" >
-						<h4>{this.props.reservationsAttendQuantity} Attend reservations</h4>							
-							{this.props.reservations.map((el, i) => 
-								(
-									<div key={el.id}>
-										{el.status === "Asiste" ? <Reservation info={el} index={i}/>:''}
-									</div>
-								)
-							)}												
-					</div>
-					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 attend-reservations" >
-						<h4>{this.props.reservationsConfirmedQuantity} Confirmed reservations</h4>							
-							{this.props.reservations.map((el, i) => 
-								(
-									<div key={el.id}>
-										{el.status === "Confirmado" ? <Reservation info={el} index={i}/>:''}
-									</div>
-								)
-							)}												
-					</div>
-				</div>
-			</div>
-    );
-  }
-}
-
+import "../../../statics/css/reservation-list-page.scss";
 
 function mapStateToProps(state) {
 	let canceled = 0;
@@ -105,12 +33,86 @@ function mapStateToProps(state) {
 	})
 	return {
 		reservations:state.remoteReservations.slice(),
-		reservationsCanceledQuantity: canceled,
-		reservationsNoAttendQuantity: noAttend,
-		reservationsReservedQuantity: reserved,
-		reservationsAttendQuantity: attend,
-		reservationsConfirmedQuantity: confirmed
+		CanceledQuantity: canceled,
+		NoAttendQuantity: noAttend,
+		ReservedQuantity: reserved,
+		AttendQuantity: attend,
+		ConfirmedQuantity: confirmed
 	}
+}
+
+class ReservationList extends Component {
+	componentDidMount() {
+		this.props.getReservations();
+	}
+  render() {
+    return (
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-sm-1 col-md-1 col-lg-1 col-xl-1">
+						<img src="https://get.agendapro.com/hs-fs/hubfs/Logos/logo.png?width=150&name=logo.png" 
+									alt="AgendaPro"/>
+					</div>				
+					<div className="col-sm-10 col-md-10 col-lg-10 col-xl-10">
+						<h2>Reservation list</h2>
+					</div>				
+				</div>
+				<br/>
+				<div className="row">
+					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 canceled-reservations" >
+						<h4>{this.props.CanceledQuantity} Canceled reservations</h4>
+							{this.props.reservations.map((el, i) =>
+								(
+									<div key={el.id}>
+										{el.status === "Cancelado" ? <Reservation info={el} index={i}/>:''}
+									</div>
+								)
+							)}												
+					</div>
+					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 no-attend-reservations" >
+						<h4>{this.props.NoAttendQuantity} No attend reservations</h4>							
+							{this.props.reservations.map((el, i) => 
+								(
+									<div key={el.id}>
+										{el.status === "No Asiste" ? <Reservation info={el} index={i}/>:''}
+									</div>
+								)
+							)}												
+					</div>
+					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 reserved-reservations" >
+						<h4>{this.props.ReservedQuantity} Reserved reservations</h4>							
+							{this.props.reservations.map((el, i) => 
+								(
+									<div key={el.id}>
+										{el.status === "Reservado" ? <Reservation info={el} index={i}/>:''}
+									</div>
+								)
+							)}												
+					</div>
+					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 attend-reservations" >
+						<h4>{this.props.AttendQuantity} Attend reservations</h4>							
+							{this.props.reservations.map((el, i) => 
+								(
+									<div key={el.id}>
+										{el.status === "Asiste" ? <Reservation info={el} index={i}/>:''}
+									</div>
+								)
+							)}												
+					</div>
+					<div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 attend-reservations" >
+						<h4>{this.props.ConfirmedQuantity} Confirmed reservations</h4>							
+							{this.props.reservations.map((el, i) => 
+								(
+									<div key={el.id}>
+										{el.status === "Confirmado" ? <Reservation info={el} index={i}/>:''}
+									</div>
+								)
+							)}												
+					</div>
+				</div>
+			</div>
+    );
+  }
 }
 
 export default connect(mapStateToProps,{ getReservations })(ReservationList);

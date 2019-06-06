@@ -3,11 +3,11 @@
 const initialState = {
 	reservations: [],
 	remoteReservations:[],
-	reservationsCanceledQuantity:0,
-	reservationsNoAttendQuantity:0,
-	reservationsReservedQuantity:0,
-	reservationsAttendQuantity:0,
-	reservationsConfirmedQuantity:0
+	CanceledQuantity:0,
+	NoAttendQuantity:0,
+	ReservedQuantity:0,
+	AttendQuantity:0,
+	ConfirmedQuantity:0
 }
 
 function rootReducer(state = initialState, action) {
@@ -22,8 +22,11 @@ function rootReducer(state = initialState, action) {
 		})
 	}
 	if (action.type === delete_reservation) {
+		console.log(action.payload)
+		const indexValue = state.remoteReservations.findIndex(i => i.id === action.payload.id) 
+		let newList = state.remoteReservations.splice(indexValue, 1)
 		return Object.assign({}, state, {
-			reservations: state.reservations.concat(action.payload)
+			reservations: newList
 		})
 	}
 	return state;
