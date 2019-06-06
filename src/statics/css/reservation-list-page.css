@@ -1,0 +1,24 @@
+﻿h2 {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+.canceled-reservations {
+    border-radius: 5px;
+    padding: 10px;
+}
+.no-attend-reservations {
+    border-radius: 5px;
+    padding: 10px;
+}
+.reserved-reservations {
+    border-radius: 5px;
+    padding: 10px;
+}
+.attend-reservations {
+    border-radius: 5px;
+    padding: 10px;
+}

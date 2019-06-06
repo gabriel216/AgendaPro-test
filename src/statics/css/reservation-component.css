@@ -1,0 +1,45 @@
+﻿.container-reservation {
+    display: block;
+    background-color: #e6e3e3;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    border: 1px solid lightgrey;
+}
+
+li {
+    list-style: none;
+    font-size: 13px;
+} 
+
+.attend {
+    color: green;
+    font-weight: 600;
+}
+
+.no-attend {
+    color: red;
+    font-weight: 600;    
+}
+.reserved {
+    color: blue;
+    font-weight: 600;    
+}
+.canceled {
+    color: red;
+    font-weight: 600;    
+}
+
+.reservation-list {
+    padding: 0;
+}
+
+button {
+    margin: 10px 0;
+    display: inline-block;
+    
+}
+
+.deleteBtn {
+    margin-left: 45%;
+}
